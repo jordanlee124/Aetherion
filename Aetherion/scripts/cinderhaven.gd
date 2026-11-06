@@ -50,6 +50,7 @@ func _physics_process(_delta: float) -> void:
 func respawn() -> void:
 	player.position = spawn_position
 	player.reset_movement()
+	player.reset_physics_interpolation()
 	player.get_node("Camera2D").reset_smoothing()
 
 

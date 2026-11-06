@@ -78,3 +78,16 @@ Single-threaded web export avoids the cross-origin isolation headers required by
 - `docs/Sprint_001.md`: scope, tuning and manual checks.
 
 No original GDD file was available to edit. The established world, characters, story progression and rewards are retained as recovered design context. This sprint does not implement combat or progression.
+
+## Visual smoothness follow-up
+
+Physics interpolation smooths rendered movement between the 60 Hz physics updates. The camera updates with physics, and respawn resets interpolation to avoid streaking. Movement tuning is unchanged. This follows the official [physics interpolation guide](https://docs.godotengine.org/en/stable/tutorials/physics/interpolation/using_physics_interpolation.html).
+
+A renderer-based regression test samples a test marker at a simulated 144 FPS. Run it from this folder with the same `$godot` executable used above:
+
+```powershell
+& $godot --path . --script res://tests/render_motion.gd --fixed-fps 144
+if ($LASTEXITCODE -ne 0) { throw 'Rendered movement test failed' }
+```
+
+On Godot 4.7.2, the measured sample improved from 29 repeated-position frames with a maximum 3-pixel step to 1 repeated frame with a maximum 2-pixel step. All 46 gameplay checks also passed. This controlled check verifies motion between physics updates; it does not measure display-driver stalls or guarantee real-world frame pacing on every monitor. Windows/web release exports remain unverified.
