@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/cinderhaven.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2"]
+
+[node name="Cinderhaven" type="Node2D"]
+script = ExtResource("1")
+
+[node name="Player" parent="." instance=ExtResource("2")]
+position = Vector2(96, 286)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Title" type="Label" parent="HUD"]
+offset_left = 16.0
+offset_top = 12.0
+theme_override_colors/font_color = Color(0.9, 0.77, 0.51, 1)
+theme_override_font_sizes/font_size = 16
+text = "AETHERION  /  CINDERHAVEN"
+
+[node name="Subtitle" type="Label" parent="HUD"]
+offset_left = 16.0
+offset_top = 34.0
+theme_override_colors/font_color = Color(0.5, 0.7, 0.76, 1)
+theme_override_font_sizes/font_size = 10
+text = "SPRINT 001   •   MOVEMENT TEST YARD"
+
+[node name="Controls" type="Label" parent="HUD"]
+offset_left = 16.0
+offset_top = 333.0
+theme_override_font_sizes/font_size = 11
+text = "A/D or arrows  MOVE     Space/W/Up  JUMP ×2     R  RESET     F1  DEBUG"
+
+[node name="Debug" type="Label" parent="HUD"]
+visible = false
+offset_left = 16.0
+offset_top = 56.0
+theme_override_colors/font_color = Color(0.7, 1, 0.9, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 11
